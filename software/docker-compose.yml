@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.4.2
+    volumes:
+      - mysql-windesheim-software:/var/lib/mysql
+    ports:
+      - 3306:${MYSQL_PORT:-3306}
+    env_file:
+      - .env
+    networks:
+      - windesheim
+    restart: unless-stopped
+
+volumes:
+  mysql-windesheim-software:
+
+networks:
+  windesheim:
+    external: true
